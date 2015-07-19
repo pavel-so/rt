@@ -1,0 +1,21 @@
+%tr
+  %td
+    = entry.created_at.to_formatted_s(:short)
+  %td
+    = entry.method
+  %td
+    = entry.remote_ip
+  %td.breakable
+    = entry.params
+  %td.breakable
+    - if entry.headers.present?
+      - entry.headers.each do |header|
+        = header.join(': ')
+        %br
+  %td.breakable
+    - if entry.cookies.present?
+      - entry.cookies.each do |cookie|
+        = cookie.join(': ')
+        %br
+  %td
+    = link_to 'Raw', entry_path(entry, trap_name: entry.trap.name), remote: true

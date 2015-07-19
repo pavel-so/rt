@@ -1,0 +1,23 @@
+%h1.ui.header
+  Requests for:
+  = @trap.name
+%table.ui.celled.table
+  %thead
+    %tr
+      %th Created At
+      %th Method
+      %th Remote IP
+      %th Parameters
+      %th Headers
+      %th Cookies
+      %th
+  %tbody#requests
+    = render partial: 'entry', collection: @trap.entries
+#popup
+
+:javascript
+  var pusher = new Pusher('8b29307b689272d6cabc', { encrypted: true });
+  var channel = pusher.subscribe('#{@trap.name}');
+    channel.bind('new_entry', function(data) {
+      $('#requests').prepend(data.row);
+    });

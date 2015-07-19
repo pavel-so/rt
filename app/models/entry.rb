@@ -23,7 +23,6 @@ class Entry < ActiveRecord::Base
   serialize :cookies
 
   def self.parse(request, cookies)
-    binding.pry
     entry = Entry.new
     entry.headers = request.headers.select{ |key, val| key.match("^HTTP.*")}.to_a
     entry.method = request.method

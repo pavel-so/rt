@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  root 'main#index'
+  match '/:trap_id', to: 'traps#create', via: :all, as: 'create_trap'
+  get "/:trap_id/requests" => "entries#index", as: "trap"
+  get "/:trap_id/requests/:id" => "entries#show", as: "entry"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

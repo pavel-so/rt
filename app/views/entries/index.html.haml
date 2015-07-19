@@ -16,7 +16,7 @@
 #popup
 
 :javascript
-  var pusher = new Pusher('8b29307b689272d6cabc', { encrypted: true });
+  var pusher = new Pusher('eaa13f6447ff3e350485', { encrypted: true });
   var channel = pusher.subscribe('#{@trap.name}');
     channel.bind('new_entry', function(data) {
       $('#requests').prepend(data.row);
